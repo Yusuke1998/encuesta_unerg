@@ -23,8 +23,10 @@ class preguntasController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         if($request->ajax()){
             $pregunta = poll::create([
+                'type'  => $request->type,
                 'question'  => $request->question,
                 'text'      => $request->text,
             ]);

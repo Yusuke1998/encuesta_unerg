@@ -19,7 +19,7 @@ class HomeController extends Controller
     public function index()
     {
         // dd(Auth::user()->id);
-        $respuestas = answer::all();a
+        $respuestas = answer::all();
         $preguntas = poll::all();
         return view('cuestionario')->with('preguntas',$preguntas)->with('respuestas',$respuestas);
     }

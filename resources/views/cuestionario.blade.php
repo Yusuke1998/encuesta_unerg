@@ -6,12 +6,14 @@
 <div class="col-md-12">
 
 	@foreach($preguntas as $pregunta)
+
 	<form id="fencuesta" action="{{route('storeAnswer')}}" method="post" accept-charset="utf-8">
 		<h2 align="center">{{$pregunta->question}}</h2>
 			@csrf
 			<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 			<input type="hidden" name="area_id" value="{{Auth::user()->person->area->id}}">
 			<input type="hidden" name="poll_id" value="{{$pregunta->id}}">
+
 			<div id="alert-info" class=""></div>
 			<div class="form-group">
 				<div class="radio">
