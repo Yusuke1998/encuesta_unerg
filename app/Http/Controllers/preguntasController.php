@@ -18,7 +18,9 @@ class preguntasController extends Controller
     public function index()
     {
         $preguntas = poll::orderBy('id','ASC')->paginate('5');
-        return view('admin/index')->with('preguntas',$preguntas);
+        $respuestas = answer::all();
+
+        return view('admin/index')->with('preguntas',$preguntas)->with('respuestas',$respuestas);
     }
 
     public function store(Request $request)

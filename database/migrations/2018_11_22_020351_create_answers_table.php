@@ -16,8 +16,8 @@ class CreateAnswersTable extends Migration
             $table->integer('poll_id')->unsigned();
             $table->integer('area_id')->unsigned();
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('poll_id')->references('id')->on('polls');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('poll_id')->references('id')->on('polls')->onDelete('cascade');
             $table->foreign('area_id')->references('id')->on('areas');
         });
     }

@@ -13,9 +13,9 @@
 			<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 			<input type="hidden" name="area_id" value="{{Auth::user()->person->area->id}}">
 			<input type="hidden" name="poll_id" value="{{$pregunta->id}}">
-
 			<div id="alert-info" class=""></div>
 			<div class="form-group">
+				@if($pregunta->type == 'radio')
 				<div class="radio">
 					<label>	
 						<input type="radio" name="radios" value="1" placeholder="">
@@ -28,11 +28,17 @@
 						No
 					</label>
 				</div>
+				<input type="hidden" name="respuesta" value="null">
+				@endif
 			</div>
-			<label for="respuesta">Comentario</label>
+			@if($pregunta->type == 'text')
+			<input type="hidden" name="radios" value="2">
+			<label for="respuesta">Respuesta</label>
 			<input type="text" class="form-control" id="respuesta" name="respuesta" placeholder="Escribe aqui tu comentario aqui...">
+			@endif
 		<input class="btn btn-success" id="enviar" name="enviar" type="submit" value="Enviar">
 	</form>
 	@endforeach
+
 </div>
 @endsection
