@@ -38,11 +38,6 @@ class preguntasController extends Controller
         }
     }
 
-    public function show($id)
-    {
-        //
-    }
-
     public function destroy($id)
     {
         $pregunta = poll::find($id);

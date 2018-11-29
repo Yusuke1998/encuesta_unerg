@@ -14,7 +14,7 @@ class poll extends Model
     	return $this->hasMany('App\answer');
     }
 
-    public function scopeRrespuesta($query, $id_pregunta){
-    	return $query->where('users.id','=','answers.user_id');
+    public function users(){
+    	return $this->belongsToMany('App\User');
     }
 }

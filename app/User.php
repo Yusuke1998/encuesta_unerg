@@ -27,6 +27,10 @@ class User extends Authenticatable
         return $this->hasMany('App\answer');
     }
 
+    public function polls(){
+        return $this->belongsToMany('App\poll');
+    }
+
     protected $hidden = [
         'password', 'remember_token',
     ];

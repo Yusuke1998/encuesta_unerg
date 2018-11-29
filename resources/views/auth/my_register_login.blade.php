@@ -55,7 +55,7 @@
 	</div>
 </div>
 
-{{-- Formilario de registro --}}
+{{-- Formulario de registro --}}
 
 <div class="col-md-6">
 	<div class="card-body">
@@ -97,10 +97,9 @@
 	            <label for="area" class="col-md-4 col-form-label text-md-right">{{ __('Area de Estudio') }}</label>
 	            <div class="col-md-6">
 	                <select class="form-control" name="area_id" id="area">
-	                	<option value="1">Sistemas</option>
-	                	<option value="2">Rectorado</option>
-	                	<option value="3">Agronomia</option>
-	                	<option value="4">Economia</option>
+	                @foreach($areas as $area)
+	                	<option value="{{$area->id}}">{{$area->name}}</option>
+	                @endforeach
 	                </select>
 	            </div>
 	        </div>
@@ -109,9 +108,12 @@
 	            <label for="rol" class="col-md-4 col-form-label text-md-right">{{ __('Tipo de Usuario') }}</label>
 	            <div class="col-md-6">
 	                <select class="form-control" name="role_id" id="rol">
-	                	<option value="2">Estudiante</option>
-	                	<option value="3">Profesor</option>
-	                	<option value="4">Otro</option>
+	                @foreach($roles as $rol)
+	                	@if($rol->id == 1)
+	                	@else
+	                	<option value="{{$rol->id}}">{{$rol->type}}</option>
+	                	@endif
+	                @endforeach
 	                </select>
 	            </div>
 	        </div>
@@ -145,6 +147,27 @@
 @else
 <div class="col-md-12">
 	<h1 align="center">DIRECCION DE INFORMATICA - UNERG</h1>
+	<p align="center">Tus respuestas!</p>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th style="text-align: center; padding: 20px; background: #004; color: #fff; font-size: 20px;">Titulo</th>
+				<th style="text-align: center; padding: 20px; background: #004; color: #fff; font-size: 20px;">Fecha</th>
+				<th style="text-align: center; padding: 20px; background: #004; color: #fff; font-size: 20px;">Usuario</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+			@forelse($respuestas as $respuesta)
+				<td>{{$respuesta->answer}}</td>
+				<td>{{$respuesta->created_at}}</td>
+				<td>{{$respuesta->user_id}}</td>
+			@empty
+			</tr>
+		</tbody>
+	</table>
+				No hay respuestas!
+			@endforelse
 </div>
 @endguest
 @endsection
