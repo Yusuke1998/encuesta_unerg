@@ -145,29 +145,46 @@
 	</div>
 </div>
 @else
+<style type="text/css">
+	th{
+		text-align: center; padding: 20px; background: #004; color: #fff; font-size: 20px;
+	}
+
+	td{
+		text-align: center; padding: 20px; background: #009; color: #fff; font-size: 20px;
+	}
+</style>
 <div class="col-md-12">
 	<h1 align="center">DIRECCION DE INFORMATICA - UNERG</h1>
 	<p align="center">Tus respuestas!</p>
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th style="text-align: center; padding: 20px; background: #004; color: #fff; font-size: 20px;">Titulo</th>
-				<th style="text-align: center; padding: 20px; background: #004; color: #fff; font-size: 20px;">Fecha</th>
-				<th style="text-align: center; padding: 20px; background: #004; color: #fff; font-size: 20px;">Usuario</th>
+				<th>Respuesta</th>
+				<th>Fecha</th>
+				<th>Tipo</th>
 			</tr>
 		</thead>
 		<tbody>
+			@foreach($respuestas as $respuesta)
 			<tr>
-			@forelse($respuestas as $respuesta)
+				
 				<td>{{$respuesta->answer}}</td>
+				
 				<td>{{$respuesta->created_at}}</td>
-				<td>{{$respuesta->user_id}}</td>
-			@empty
+
+				<td>@if($respuesta->radios >= 1)
+						A favor!
+					@elseif($respuesta->radios <= 1)
+						En contra!
+					@else
+						No aplica!
+					@endif
+				</td>
 			</tr>
+			@endforeach
 		</tbody>
 	</table>
-				No hay respuestas!
-			@endforelse
 </div>
 @endguest
 @endsection

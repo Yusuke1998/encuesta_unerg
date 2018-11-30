@@ -25,14 +25,22 @@ class HomeController extends Controller
 
     public function storeAnswer(Request $request)
     {
-        // $respuesta = answer::create([
-        //     'answer'        =>  $request->respuesta,
-        //     'status'        =>  $request->status,
-        //     'radios'        =>  $request->radios,
-        //     'user_id'       =>  $request->user_id,
-        //     'poll_id'       =>  $request->poll_id,
-        //     'area_id'       =>  $request->area_id
-        // ]);
+        $tope = count($request->user_id);
+        // dd(count($tope));
+
+        for ($i=0; $i <= $tope-1; $i++) { 
+            
+            $resp       = $request->respuesta[$i];
+            $est        = $request->status[$i];
+            $rad        = $request->radios[$i];
+            $userid     = $request->user_id[$i];
+            $pollid     = $request->poll_id[$i];
+            $areaid     = $request->area_id[$i];
+            $created    = date('Y-m-d H:m:s');
+
+        DB::insert("INSERT INTO answers (answer,status,radios,user_id,poll_id,area_id,created_at) VALUES ('$resp','$est','$rad','$userid','$pollid','$areaid','$created')");    
+        }
+
         return redirect('/');
     }
 }

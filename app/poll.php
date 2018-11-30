@@ -10,8 +10,8 @@ class poll extends Model
         'question', 'text', 'type',
     ];
 
-    public function answers(){
-    	return $this->hasMany('App\answer');
+    public function answer(){
+    	return $this->hasOne('App\answer');
     }
 
     public function users(){

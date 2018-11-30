@@ -23,8 +23,8 @@ class User extends Authenticatable
         return $this->belongsTo('App\rol','role_id');
     }
 
-    public function answers(){
-        return $this->hasMany('App\answer');
+    public function answer(){
+        return $this->hasOne('App\answer');
     }
 
     public function polls(){
